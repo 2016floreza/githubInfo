@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import SignUp from "./SignUp";
+import { TokenProvider } from "./components/TokenContext";
+import Dashboard from "./Dashboard";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TokenProvider>
+      <CssBaseline />
+      <BrowserRouter>
+        <Switch>
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/" component={SignUp} />
+        </Switch>
+      </BrowserRouter>
+    </TokenProvider>
   );
-}
+};
 
 export default App;
